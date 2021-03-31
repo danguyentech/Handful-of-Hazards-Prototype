@@ -1,0 +1,75 @@
+#diceHolder{
+    display: flex;
+    flex-direction: row;
+    height: 120px;
+    background-color: grey;
+    border: black;
+}
+.dice{
+    position: absolute;
+    top: 50px
+}
+#dice2{
+    left: 116px;
+}
+#dice3{
+    left: 216px;
+}
+#dice4{
+    left: 316px;
+}
+#dice5{
+    left: 416px;
+}
+#dice6{
+    left: 516px;
+}
+#pair1, #pair2, #timer{
+    margin-top: 10px;
+    background-color: gray;
+    border: black;
+    height: 150px;
+    padding-left: 16px;
+}
+#hiddenDiceHolder{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+.hiddenDice{
+    display: none;
+}
+#game{
+    display: flex;
+    flex-direction: row;
+}
+#playArea{
+    width: 50vw;
+}
+#submitButton, #resetButton{
+    display: none
+}
+#message{
+    display: none;
+}
+#scoreArea{
+    margin-left: 15px;
+    display: flex;
+    flex-direction: row;
+}
+#lossArea, #winArea{
+    margin-left: 15px;
+}
+.circle{
+    font-size: 20px;
+}
+p{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+#timer1Count, #timer3Count, #timer6Count{
+    display: none
+}
+#trashCount{
+    margin-top: 50px;
+}

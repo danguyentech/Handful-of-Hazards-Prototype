@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./w3.css">
+    <link rel="stylesheet" href="./index.css">
+    <script src="./index.js"></script>
+    <script src="https://kit.fontawesome.com/e9d9c506c6.js" crossorigin="anonymous"></script>
+    <title>Game Tester</title>
+</head>
+
+<body>
+    <div id='game'>
+        <div id='playArea'>
+            <button id='startButton' onclick="diceRoll(), hideButton()">Start</button>
+            <button id='submitButton' onclick='submitRolls()'>Submit Rolls</button>
+            <button id='resetButton' onclick="resetPosition()">Reset</button>
+            <p id='message'>Roll the dice!</p>
+            <div class='w3-container w3-margin-top' id='diceHolder'>
+                <div class='diceContainer'>
+                    <img id='dice1' class='dice' src="./img/Dice One.png" value='0' alt="1">
+                </div>
+                <div class='diceContainer'>
+                    <img id='dice2' class='dice' src="./img/Dice Two.png" value='0' alt="2">
+                </div>
+                <div class='diceContainer'>
+                    <img id='dice3' class='dice' src="./img/Dice Three.png" value='0' alt="3">
+                </div>
+                <div class='diceContainer'>
+                    <img id='dice4' class='dice' src="./img/Dice Four.png" value='0' alt="4">
+                </div>
+                <div class='diceContainer'>
+                    <img id='dice5' class='dice' src="./img/Dice Five.png" value='0' alt="5">
+                </div>
+            </div>
+            <div class='w3-container' id='pair1' value='Pair 1'>
+                <p>Value of Pair 1: <span id='pair1Value'>0</span></p>
+                <div class='diceContainer hiddenDice'>
+                    <img id='pair1dice1' class='dice value1Dice' src="./img/Dice One.png" value='0' alt="1">
+                </div>
+                <div class='diceContainer hiddenDice'>
+                    <img id='pair1dice2' class='dice value1Dice' src="./img/Dice Two.png" value='0' alt="2">
+                </div>
+                <div class='diceContainer hiddenDice'>
+                    <img id='pair1dice3' class='dice value1Dice' src="./img/Dice Three.png" value='0' alt="3">
+                </div>
+                <div class='diceContainer hiddenDice'>
+                    <img id='pair1dice4' class='dice value1Dice' src="./img/Dice Four.png" value='0' alt="4">
+                </div>
+                <div class='diceContainer hiddenDice'>
+                    <img id='pair1dice5' class='dice value1Dice' src="./img/Dice Five.png" value='0' alt="5">
+                </div>
+            </div>
+            <div class='w3-container' id='pair2'>
+                <p>Value of Pair 2: <span id='pair2Value'>0</span></p>
+                <div class='diceContainer hiddenDice'>
+                    <img id='pair2dice1' class='dice value2Dice' src="./img/Dice One.png" value='0' alt="1">
+                </div>
+                <div class='diceContainer hiddenDice'>
+                    <img id='pair2dice2' class='dice value2Dice' src="./img/Dice Two.png" value='0' alt="2">
+                </div>
+                <div class='diceContainer hiddenDice'>
+                    <img id='pair2dice3' class='dice value2Dice' src="./img/Dice Three.png" value='0' alt="3">
+                </div>
+                <div class='diceContainer hiddenDice'>
+                    <img id='pair2dice4' class='dice value2Dice' src="./img/Dice Four.png" value='0' alt="4">
+                </div>
+                <div class='diceContainer hiddenDice'>
+                    <img id='pair2dice5' class='dice value2Dice' src="./img/Dice Five.png" value='0' alt="5">
+                </div>
+            </div>
+            <div class='w3-container' id='timer'>
+                <p>Value of timer: <span id='timerValue'>0</span></p>
+                <div class='diceContainer hiddenDice'>
+                    <img id='timerdice1' class='dice timerDice' src="./img/Dice One.png" value='0' alt="1">
+                </div>
+                <div class='diceContainer hiddenDice'>
+                    <img id='timerdice2' class='dice timerDice' src="./img/Dice Two.png" value='0' alt="2">
+                </div>
+                <div class='diceContainer hiddenDice'>
+                    <img id='timerdice3' class='dice timerDice' src="./img/Dice Three.png" value='0' alt="3">
+                </div>
+                <div class='diceContainer hiddenDice'>
+                    <img id='timerdice4' class='dice timerDice' src="./img/Dice Four.png" value='0' alt="4">
+                </div>
+                <div class='diceContainer hiddenDice'>
+                    <img id='timerdice5' class='dice timerDice' src="./img/Dice Five.png" value='0' alt="5">
+                </div>
+            </div>
+        </div>
+        <div id='scoreArea'>
+            <div id='pairArea'>
+                <p>Pair Values</p>
+                <div class='w3-gray w3-border w3-border-black w3-container w3-margin-top'>
+                    <div id='2Count'>
+                        <p>Count of 2: <span id='2CountValue'>0</span></p>
+                        <span class='circle 2circle' id='2CountCircle1'>&#9675;</span>
+                        <span class='circle 2circle' id='2CountCircle2'>&#9675;</span>
+                        <span class='circle 2circle' id='2CountCircle3'>&#9420;</span>
+                    </div>
+                    <div id='3Count'>
+                        <p>Count of 3: <span id='3CountValue'>0</span></p>
+                        <span class='circle 3circle' id='3CountCircle1'>&#9675;</span>
+                        <span class='circle 3circle' id='3CountCircle2'>&#9675;</span>
+                        <span class='circle 3circle' id='3CountCircle3'>&#9675;</span>
+                        <span class='circle 3circle' id='3CountCircle4'>&#9420;</span>
+                    </div>
+                    <div id='4Count'>
+                        <p>Count of 4: <span id='4CountValue'>0</span></p>
+                        <span class='circle 4circle' id='4CountCircle1'>&#9675;</span>
+                        <span class='circle 4circle' id='4CountCircle2'>&#9675;</span>
+                        <span class='circle 4circle' id='4CountCircle3'>&#9675;</span>
+                        <span class='circle 4circle' id='4CountCircle4'>&#9675;</span>
+                        <span class='circle 4circle' id='4CountCircle5'>&#9420;</span>
+                    </div>
+                    <div id='5Count'>
+                        <p>Count of 5: <span id='5CountValue'>0</span></p>
+                        <span class='circle 5circle' id='5CountCircle1'>&#9675;</span>
+                        <span class='circle 5circle' id='5CountCircle2'>&#9675;</span>
+                        <span class='circle 5circle' id='5CountCircle3'>&#9675;</span>
+                        <span class='circle 5circle' id='5CountCircle4'>&#9675;</span>
+                        <span class='circle 5circle' id='5CountCircle5'>&#9675;</span>
+                        <span class='circle 5circle' id='5CountCircle6'>&#9420;</span>
+                    </div>
+                    <div id='6Count'>
+                        <p>Count of 6: <span id='6CountValue'>0</span></p>
+                        <span class='circle 6circle' id='6CountCircle1'>&#9675;</span>
+                        <span class='circle 6circle' id='6CountCircle2'>&#9675;</span>
+                        <span class='circle 6circle' id='6CountCircle3'>&#9675;</span>
+                        <span class='circle 6circle' id='6CountCircle4'>&#9675;</span>
+                        <span class='circle 6circle' id='6CountCircle5'>&#9675;</span>
+                        <span class='circle 6circle' id='6CountCircle6'>&#9675;</span>
+                        <span class='circle 6circle' id='6CountCircle7'>&#9420;</span>
+                    </div>
+                </div>
+                <div class='w3-gray w3-border w3-border-black w3-container'>
+                    <div id='7Count'>
+                        <p>Count of 7: <span id='7CountValue'>0</span></p>
+                        <span class='circle 7circle' id='7CountCircle1'>&#9675;</span>
+                        <span class='circle 7circle' id='7CountCircle2'>&#9675;</span>
+                        <span class='circle 7circle' id='7CountCircle3'>&#9675;</span>
+                        <span class='circle 7circle' id='7CountCircle4'>&#9675;</span>
+                        <span class='circle 7circle' id='7CountCircle5'>&#9675;</span>
+                        <span class='circle 7circle' id='7CountCircle6'>&#9675;</span>
+                        <span class='circle 7circle' id='7CountCircle7'>&#9409;</span>
+                    </div>
+                    <div id='8Count'>
+                        <p>Count of 8: <span id='8CountValue'>Trash!</span></p>
+                        <hr>
+                    </div>
+                    <div id='9Count'>
+                        <p>Count of 9: <span id='9CountValue'>0</span></p>
+                        <span class='circle 9circle' id='9CountCircle1'>&#9675;</span>
+                        <span class='circle 9circle' id='9CountCircle2'>&#9675;</span>
+                        <span class='circle 9circle' id='9CountCircle3'>&#9675;</span>
+                        <span class='circle 9circle' id='9CountCircle4'>&#9675;</span>
+                        <span class='circle 9circle' id='9CountCircle5'>&#9675;</span>
+                        <span class='circle 9circle' id='9CountCircle6'>&#9409;</span>
+                    </div>
+                </div>
+                <div class='w3-grey w3-border w3-border-black w3-container'>
+                    <div id='10Count'>
+                        <p>Count of 10: <span id='10CountValue'>0</span></p>
+                        <span class='circle 10circle' id='10CountCircle1'>&#9675;</span>
+                        <span class='circle 10circle' id='10CountCircle2'>&#9675;</span>
+                        <span class='circle 10circle' id='10CountCircle3'>&#9675;</span>
+                        <span class='circle 10circle' id='10CountCircle4'>&#9675;</span>
+                        <span class='circle 10circle' id='10CountCircle5'>&#9675;</span>
+                        <span class='circle 10circle' id='10CountCircle6'>&#9420;</span>
+                    </div>
+                    <div id='11Count'>
+                        <p>Count of 11: <span id='11CountValue'>Trash!</span></p>
+                        <hr>
+                    </div>
+                    <div id='12Count'>
+                        <p>Count of 12: <span id='12CountValue'>0</span></p>
+                        <span class='circle 12circle' id='12CountCircle1'>&#9675;</span>
+                        <span class='circle 12circle' id='12CountCircle2'>&#9675;</span>
+                        <span class='circle 12circle' id='12CountCircle3'>&#9420;</span>
+                    </div>
+                </div>
+            </div>
+            <div id='lossArea'>
+                <p>Timer Values</p>
+                <div class='w3-gray w3-border w3-border-black w3-container w3-margin-top'>
+                <div id='timer1Count'>
+                    <p>Count of 1: <span id='timer1CountValue'>Wild!</span></p>
+                </div>
+                <div id='timer2Count'>
+                    <p>Count of 2: <span id='timer2CountValue'>0</span></p>
+                    <span class='circle timer2Circle' id='timer2CountCircle1'>&#9675;</span>
+                    <span class='circle timer2Circle' id='timer2CountCircle2'>&#9675;</span>
+                    <span class='circle timer2Circle' id='timer2CountCircle3'>&#9675;</span>
+                    <span class='circle timer2Circle' id='timer2CountCircle4'>&#9675;</span>
+                    <span class='circle timer2Circle' id='timer2CountCircle5'>&#9675;</span>
+                    <span class='circle timer2Circle' id='timer2CountCircle6'>&#9409;</span>
+                </div>
+                <div id='timer3Count'>
+                    <p>Count of 3: <span id='timer3CountValue'>Wild!</span></p>
+                </div>
+                <div id='timer4Count'>
+                    <p>Count of 4: <span id='timer4CountValue'>0</span></p>
+                    <span class='circle timer4Circle' id='timer4CountCircle1'>&#9675;</span>
+                    <span class='circle timer4Circle' id='timer4CountCircle2'>&#9675;</span>
+                    <span class='circle timer4Circle' id='timer4CountCircle3'>&#9675;</span>
+                    <span class='circle timer4Circle' id='timer4CountCircle4'>&#9675;</span>
+                    <span class='circle timer4Circle' id='timer4CountCircle5'>&#9675;</span>
+                    <span class='circle timer4Circle' id='timer4CountCircle6'>&#9409;</span>
+                </div>
+                <div id='timer5Count'>
+                    <p>Count of 5: <span id='timer5CountValue'>0</span></p>
+                    <span class='circle timer5Circle' id='timer5CountCircle1'>&#9675;</span>
+                    <span class='circle timer5Circle' id='timer5CountCircle2'>&#9675;</span>
+                    <span class='circle timer5Circle' id='timer5CountCircle3'>&#9675;</span>
+                    <span class='circle timer5Circle' id='timer5CountCircle4'>&#9675;</span>
+                    <span class='circle timer5Circle' id='timer5CountCircle5'>&#9675;</span>
+                    <span class='circle timer5Circle' id='timer5CountCircle6'>&#9409;</span>
+                </div>
+                <div id='timer6Count'>
+                    <p>Count of 6: <span id='timer6CountValue'>Wild!</span></p>
+                </div>
+                <div id='timerWildCount'>
+                    <p>Count of Wild: <span id='timerWildValue'>0</span></p>
+                    <span class='circle wildcircle' id='timerWildCircle1'>&#9675;</span>
+                    <span class='circle wildcircle' id='timerWildCircle2'>&#9675;</span>
+                    <span class='circle wildcircle' id='timerWildCircle3'>&#9675;</span>
+                    <span class='circle wildcircle' id='timerWildCircle4'>&#9675;</span>
+                    <span class='circle wildcircle' id='timerWildCircle5'>&#9675;</span>
+                    <span class='circle wildcircle' id='timerWildCircle6'>&#9409;</span>
+                </div>
+                <p>1, 3, and 6 are Wild.</p>
+            </div>
+                <div id='trashCount' class='w3-gray w3-border w3-border-black w3-container'>
+                    <p>Count of Trash: <span id='trashCountValue'>0</span></p>
+                    <span class='circle trashCircle' id='trashCircle1'>&#9675;</span>
+                    <span class='circle trashCircle' id='trashCircle2'>&#9675;</span>
+                    <span class='circle trashCircle' id='trashCircle3'>&#9675;</span>
+                    <span class='circle trashCircle' id='trashCircle4'>&#9675;</span>
+                    <span class='circle trashCircle' id='trashCircle5'>&#9675;</span>
+                    <span class='circle trashCircle' id='trashCircle6'>&#9409;</span>
+                </div>
+                
+            </div>
+            <div id='winArea'>
+                <p>Wins</p>
+                <div class='w3-gray w3-border w3-border-black w3-container w3-margin-top'>
+                    <div id='2to6Wins'>
+                        <p>Count of Wins from 2 to 6: <span id='2to6WinCountValue'>0</span></p>
+                        <span class='circle 2to6circle' id='2to6Circle1'>&#9420;</span>
+                        <span class='circle 2to6circle' id='2to6Circle2'>&#9420;</span>
+                        <span class='circle 2to6circle' id='2to6Circle3'>&#9420;</span>
+                    </div>
+                    <div id='10to12Wins'>
+                        <p>Need 1 win from 10 to 12!</p>
+                        <span class='circle 10to12circle' id='10to12Circle1'>&#9420;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="confirmTimer" class="w3-modal">
+        <div class="w3-modal-content">
+            <div class="w3-container">
+                <p>The number of used slots in space <span id='chosen'>0</span> is <span id='usedSlots'>0</span>.</p>
+                <p>The number of used slots in the Wild space is <span id='usedWildSlots'>0</span>.</p>
+                <p>Which space would you like to place this roll in?</p>
+                <button class='w3-button w3-green'
+                    onclick="fillTimerCircle(parseInt(document.getElementById(`chosen`).innerHTML)), document.getElementById('confirmTimer').style.display='none'">Place
+                    in Chosen Space</button>
+                <button class='w3-button w3-green'
+                    onclick="fillTimerCircle(1), document.getElementById('confirmTimer').style.display='none'">Place in
+                    Wild Space</button>
+            </div>
+        </div>
+    </div>
+    <div id="winOrLose" class="w3-modal">
+        <div class="w3-modal-content">
+            <div class="w3-container">
+                <p id='winLossText'>You win!</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        dragElement(document.getElementById("dice1"));
+        dragElement(document.getElementById("dice2"));
+        dragElement(document.getElementById("dice3"));
+        dragElement(document.getElementById("dice4"));
+        dragElement(document.getElementById("dice5"));
+    </script>
+</body>
+
+</html>
