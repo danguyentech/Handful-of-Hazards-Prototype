@@ -207,8 +207,6 @@ function submitRolls() {
         let roll1 = document.getElementById(`pair1Value`).innerHTML
         let roll2 = document.getElementById(`pair2Value`).innerHTML
         let timer = document.getElementById(`timerValue`).innerHTML
-        fillValueCircle(roll1)
-        fillValueCircle(roll2)
         if (timer == 2 || timer == 4 || timer == 5) {
             document.getElementById('chosen').innerHTML = timer
             document.getElementById('usedSlots').innerHTML = document.getElementById(`timer${timer}CountValue`).innerHTML
@@ -217,7 +215,13 @@ function submitRolls() {
         } else {
             fillTimerCircle(timer)
         }
+        fillValueCircle(roll1)
+        fillValueCircle(roll2)
         //fillTimerCircle(timer)
+        if (parseInt(document.getElementById(`2to6WinCountValue`).innerHTML) == 3 && parseInt(document.getElementById(`10to12Circle1`).innerHTML) == 1) {
+            document.getElementById('winLossText').textContent = 'You win!'
+            document.getElementById('winOrLose').style.display = 'flex'
+        }
         diceRoll()
     }
 }
@@ -254,9 +258,6 @@ function fillValueCircle(value) {
                 let valueNumber = document.getElementById(`${value}CountValue`).innerHTML
                 document.getElementById(`${value}CountCircle${valueNumber}`).classList.add(`w3-green`)
                 console.log(`${value} is a win!`)
-                if (parseInt(document.getElementById(`2to6WinCountValue`).innerHTML) == 3 && parseInt(document.getElementById(`10to12Circle1`).innerHTML) == 1) {
-                    document.getElementById('winOrLose').style.display = 'flex'
-                }
                 getWin(value)
                 break;
             }
@@ -277,7 +278,6 @@ function fillValueCircle(value) {
                     break;
                 }
             }
-
         case 7:
         case 9:
             if (parseInt(document.getElementById(`${value}CountValue`).innerHTML) < (document.getElementsByClassName(`${value}circle`).length) - 1) {
@@ -370,7 +370,7 @@ function getWin(value) {
         case 4:
         case 5:
         case 6:
-            if (parseInt(document.getElementById(`2to6WinCountValue`).innerHTML) < (document.getElementsByClassName(`2to6circle`).length) - 1) {
+            if (parseInt(document.getElementById(`2to6WinCountValue`).innerHTML) < (document.getElementsByClassName(`2to6circle`).length)) {
                 document.getElementById(`2to6WinCountValue`).innerHTML = parseInt(document.getElementById(`2to6WinCountValue`).innerHTML) + 1
                 let twoTo6WinNumber = document.getElementById(`2to6WinCountValue`).innerHTML
                 document.getElementById(`2to6Circle${twoTo6WinNumber}`).classList.add(`w3-green`)
